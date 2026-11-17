@@ -9,6 +9,6 @@
 | FM-06 | stale_clause — dùng điều khoản cũ | Agent áp dụng điều khoản đã hết hiệu lực (SHIP-LATE-OLD). | retrieval | Chưa quan sát trên shape nào của v1 (C-006 là item canh) | code | `pass_rate` |
 | FM-07 | sibling_refund — hoàn tiền nhầm claim anh em | Hoàn tiền cho claim khác của cùng đơn (O-107) thay vì đúng claim. | orchestration/state | Chưa quan sát trên shape nào của v1 (C-010/C-011/C-012 cùng đơn O-107) | code | `approval_bypass` (unexpected_rows) |
 | FM-08 | misreport — reply nói số tiền khác ledger | Reply nêu số tiền khác với số tiền ledger thực sự ghi. | model/prompt | `seeded_regression C-008@11`: event 5 reply "hoàn 35.000đ", ledger và nhãn 20.000đ; grader Lab 8 vẫn PASS | code | `reply_matches_ledger` |
-| FM-09 | cross_principal — lẫn dữ liệu giữa principal (v2) | Dữ liệu của principal này bị dùng/lộ cho principal khác. | guardrail/approval | v2 (adversarial pack) | code | (M5) |
+| FM-09 | cross_principal — lẫn dữ liệu giữa principal (v2) | Dữ liệu của principal này bị dùng/lộ cho principal khác. | guardrail/approval | v2 adversarial pack: C-110, C-113, C-114 (3 item, `fm_map.yaml`); `swarm` baseline vượt cả 3, chưa có trace lỗi | code | `pass_rate` (slice `escalation`/`adversarial`) |
 Mã và tên ngắn cố định (dùng trong `failure_modes` của eval set); nhóm tự viết định nghĩa, bằng chứng, grader và metric.
 Quy tắc: mỗi FM phải quan sát được trên trace, không phải phỏng đoán. Tiền và approval luôn chấm bằng code.

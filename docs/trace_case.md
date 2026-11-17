@@ -19,7 +19,7 @@ python -m lab9.trace_case --shape fixed --claim C-008 --seed 11   # đối chứ
 | Failure mode | FM-08 misreport (`docs/failure_taxonomy.md`) |
 | Đối chứng | `fixed C-008@11`: event 4 `reply` = "đã hoàn **20.000đ**", khớp ledger 20000. Khác biệt duy nhất: reply lấy số từ ledger, không từ quote. |
 | Regression test | `tests/test_lab9_trace_case.py`: `test_fixed_reply_matches_ledger` (pass trên `fixed`) và `test_seeded_regression_misreports_amount` (reply ≠ ledger trên variant lỗi). So reply với **ledger**, không dựa vào grader Lab 8. Metric FM-08 ở M3 (`metric_spec.yaml`) sẽ làm cùng việc ở cấp gate. |
-| Chưa chắc chắn | Trace không cho biết **vì sao** shape lỗi lấy số quote (35000) cho reply: có thể do bug trong variant hay do thứ tự bước; trace chỉ chứng minh reply ≠ ledger. MockLLM nên mọi seed cho cùng kết quả, chưa chứng minh được tỉ lệ lỗi với LLM thật. |
+| Chưa chắc chắn | Trace không cho biết **vì sao** shape lỗi lấy số quote (35000) cho reply: có thể do bug trong variant hay do thứ tự bước; trace chỉ chứng minh reply != ledger. MockLLM nên mọi seed cho cùng kết quả, chưa chứng minh được tỉ lệ lỗi với LLM thật. |
 
 ## Quy tắc
 

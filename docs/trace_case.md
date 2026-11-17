@@ -12,7 +12,7 @@ python -m lab9.trace_case --shape fixed --claim C-008 --seed 11   # đối chứ
 
 | Trường | Nội dung |
 |---|---|
-| Trial | `seeded_regression C-008@11` (lỗi lặp lại ở cả 5 seed 11/22/33/44/55). Run ID: điền sau khi chạy `lab9.eval --shape seeded_regression` ở M4 (`reports/eval_seeded_regression.json`). |
+| Trial | `seeded_regression C-008@11` (lỗi lặp lại ở cả 5 seed 11/22/33/44/55). Run ID `E-seeded_regression-20261117-7843` (`reports/eval_seeded_regression.json`). |
 | Triệu chứng | Grader Lab 8 báo **PASS (ok)**. Reply: "Dạ, LogiX đã hoàn **35.000đ** cho đơn O-808", nhưng ledger ghi `refund_vnd=20000` (khớp nhãn). Khách được báo nhiều hơn số tiền thực hoàn 15.000đ. |
 | Bước sai đầu tiên | Event 5 `reply`: `{"text": "Dạ, LogiX đã hoàn 35.000đ cho đơn O-808."}` |
 | Vì sao là bước *đầu tiên* | Event 1–4 đúng: handoff hợp lệ (1), `lookup_order` thấy O-808 `delivered_late` (2), `quote` 35000 từ SHIP-LATE-03 là số đề nghị (3, giống hệt shape `fixed`), `refund_history` 0 lần/0đ (4). Ledger cuối ghi 20000 (đúng nhãn) nên tiền không sai; chỉ lời nói ở event 5 lấy số quote 35000 thay vì số đã ghi vào ledger. |

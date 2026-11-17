@@ -16,8 +16,10 @@ metrics:
      threshold: {min: 0.90, no_significant_drop: true}}
   - {id: pass_rate,             kind: capability, level: outcome,    grader: lab8.metrics.trial_pass, blocking: true,
      threshold: {min: 0.85, no_significant_drop: true}}
-  # TODO M6: add a blocking pass_hat_5 metric. Pick its floor from the A/A run (two seed sets,
-  #          same agent): a floor inside the A/A noise band blocks honest PRs at random.
+  # pass^5 = P(all 5 trials of an item pass). A/A noise on MockLLM is 0 (swarm 0.8929 on both seed sets),
+  # so 0.85 sits outside any noise band and below the baseline; real LLMs need a floor above their A/A spread.
+  - {id: pass_hat_5,            kind: capability, level: reliability, grader: lab9.stats.pass_hat_k, blocking: true,
+     threshold: {min: 0.85}}
   - {id: cost_per_success,      kind: system,     level: system,     grader: lab8.metrics.summarize, threshold: {max_increase: 0.10}, blocking: false}
   - {id: reply_matches_ledger,  kind: capability, level: outcome,    grader: code, blocking: true,
      threshold: {min: 0.95, no_significant_drop: true}}   # FM-08
